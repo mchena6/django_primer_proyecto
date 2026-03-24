@@ -4,14 +4,14 @@ from .forms import TareaForm
 
 
 def todolist(request):
-    tareas = Tarea.objects.filter(activo=True).order_by('-id')
+    tareas = Tarea.objects.filter(activo=True)
     
     return render (request, 'todolist/index.html', {'tareas': tareas})
 
 def crear_tarea(request):
     if request.method == "POST":
-        # Mandar los datos del formulario 
-        form = TareaForm(request.POST)
+        # Mandar los datos del formulario Y los archivos (imagenes)
+        form = TareaForm(request.POST, request.FILES)
         # Verificar que los campos son validos
         if form.is_valid():
             # Guardar en la base de datos
@@ -29,7 +29,7 @@ def editar_tarea(request, id):
     tarea = get_object_or_404(Tarea, id=id)
     
     if request.method == "POST":
-        form = TareaForm(request.POST, instance=tarea)
+        form = TareaForm(request.POST, request.FILES, instance=tarea)
         if form.is_valid():
             form.save()
             return redirect('tareas')
