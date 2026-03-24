@@ -36,7 +36,17 @@ class Tarea(models.Model):
         default=None, 
         blank=True)
     activo = models.BooleanField(default=True, help_text="La tarea esta activa?")
+    imagen = models.ImageField(upload_to='card_image/', null=True, blank=True)
 
-
+    # Funcion para mostrar el nombre de la tarea en mayuscula (no se guarda en la base de datos)
+    def nombre_mayuscula(self):
+        return f"{self.nombre.upper()}"
+    
+    
     def __str__(self):
         return f"Soy la tarea: {self.nombre}"
+    
+    class Meta:
+        verbose_name = "Tarea de proyecto"
+        verbose_name_plural = "Tareas de proyecto"
+        ordering = ["-id"]
