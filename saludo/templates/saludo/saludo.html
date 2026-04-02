@@ -1,0 +1,21 @@
+{% extends 'saludo/base.html' %}
+
+{%block body%}
+    <div>
+        <p class="fondo">Saludos! {{nombre}}</p>
+        {% if esMayor %}
+            <hr>
+            <h1>¡Eres mayor de edad!</h1>
+            <hr>
+        {%else %}
+            <hr>
+            <p>No eres mayor de edad.</p>
+            <hr>
+        {% endif %}
+
+        <p>Tus mascotas son:</p>
+        {% for mascota in mascotas %}
+            <li>{{ mascota }}</li>
+        {% endfor %}
+    </div>
+{%endblock%}
