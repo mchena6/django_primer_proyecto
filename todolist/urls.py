@@ -8,5 +8,6 @@ from . import views
 # Variable para conectar las rutas con las vistas
 # Ruta, view, nombre de la ruta para usarla en el html
 urlpatterns = [
-    path('', views.todolist, name="tareas")
+    path('', views.todolist, name="tareas"),
+    path("nueva/", views.crear_tarea, name="crear_tarea")
 ]
