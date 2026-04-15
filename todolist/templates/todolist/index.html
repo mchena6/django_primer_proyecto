@@ -1,0 +1,12 @@
+{% extends 'saludo/base.html' %}
+
+{%block body%}
+    <div>
+        <p>Estas son todas tus tareas:</p>
+        {% for tarea in tareas %}
+            <li>{{ tarea }}, {{ tarea.completada}}</li>
+            <li>{{ tarea.responsable.username }}, {{ tarea.etiqueta}}</li>
+            <hr>
+        {% endfor %}
+    </div>
+{%endblock%}
