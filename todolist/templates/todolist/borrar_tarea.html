@@ -1,0 +1,17 @@
+{% extends 'saludo/base.html' %}
+
+{% block body %}
+
+<h1>Borrar tarea</h1>
+<form method="post">
+    
+    {% csrf_token %}
+    
+    <div>Estas seguro de borrar esta tarea?</div>
+    <h3>{{ tarea }}</h3>
+
+    <button type="submit">Si, eliminar</button>
+    <a href="{% url 'tareas' %}">No, cancelar</a>
+</form>
+
+{% endblock %}

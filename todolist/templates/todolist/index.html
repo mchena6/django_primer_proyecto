@@ -3,9 +3,15 @@
 {%block body%}
     <div>
         <p>Estas son todas tus tareas:</p>
+        <a href="{% url 'crear_tarea' %}">Nueva tarea...</a>
+        
+
         {% for tarea in tareas %}
-            <li>{{ tarea }}, {{ tarea.completada}}</li>
-            <li>{{ tarea.responsable.username }}, {{ tarea.etiqueta}}</li>
+            <li>{{ tarea }}</li>
+            <li>{{ tarea.completada}}</li>
+            <li>{{ tarea.etiqueta.nombre}}</li>
+            <a href="{% url 'editar_tarea' tarea.id %}">Editar tarea</a>
+            <a href="{% url 'borrar_tarea' tarea.id %}">Borrar tarea</a>
             <hr>
         {% endfor %}
     </div>
