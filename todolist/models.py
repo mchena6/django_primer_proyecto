@@ -35,6 +35,7 @@ class Tarea(models.Model):
         related_name="etiqueta", 
         default=None, 
         blank=True)
+    activo = models.BooleanField(default=True, help_text="La tarea esta activa?")
 
 
     def __str__(self):
