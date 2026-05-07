@@ -24,7 +24,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # Incluimos las rutas de la aplicacion saludo
     path('', include('saludo.urls')),
-    path('tareas/', include('todolist.urls'))
+    path('tareas/', include('todolist.urls')),
+    # Rutas de login y logout (Manejo de usuarios)
+    path("accounts/", include('django.contrib.auth.urls'))
 ]
 
 if settings.DEBUG:
