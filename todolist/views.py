@@ -2,12 +2,28 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Tarea
 from .forms import TareaForm
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
+def registrarse(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            login(request, usuario)
+            return redirect('tareas')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+@login_required
 def todolist(request):
     tareas = Tarea.objects.filter(activo=True)
     
     return render (request, 'todolist/index.html', {'tareas': tareas})
 
+@login_required
 def crear_tarea(request):
     if request.method == "POST":
         # Mandar los datos del formulario Y los archivos (imagenes)
@@ -23,6 +39,7 @@ def crear_tarea(request):
 
     return render(request, 'todolist/crear_tarea.html', {'form': form})
 
+@login_required
 # Parametro Ruta: url.com/editar_tarea/<id>
 def editar_tarea(request, id):
     # Obtener tarea
@@ -38,6 +55,7 @@ def editar_tarea(request, id):
         form = TareaForm(instance=tarea)
     return render(request, "todolist/editar_tarea.html", {"form": form})
 
+@login_required
 def eliminar_tarea(request, id):
     tarea = get_object_or_404(Tarea, id=id)
     
