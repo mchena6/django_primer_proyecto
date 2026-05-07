@@ -57,7 +57,8 @@ ROOT_URLCONF = "primer_proyecto.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        # Buscar templates en archivos raiz primero
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -68,6 +69,9 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGIN_REDIRECT_URL = 'saludo'
+LOGOUT_REDIRECT_URL = 'saludo'
 
 WSGI_APPLICATION = "primer_proyecto.wsgi.application"
 
