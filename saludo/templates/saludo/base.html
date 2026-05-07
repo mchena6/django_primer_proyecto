@@ -8,10 +8,19 @@
 <body>
     <nav>
         <a href="{% url 'inicio' %}">Inicio</a>
-        <a href="{% url 'saludo' %}">Saludo</a>
-        <a href="{% url 'despedir' %}">Despedida</a>
+        <a href="{% url 'saludo' %}">Home</a>
         <a href="{% url 'tareas' %}">Tareas</a>
         <a href="{% url 'admin:index' %}">Admin</a>
+
+        {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button>Cerrar sesion</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Iniciar sesion</a>        
+        {% endif %}
+
     </nav>
     {%block body%}
 
