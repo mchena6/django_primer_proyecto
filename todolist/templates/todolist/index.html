@@ -14,8 +14,12 @@
             <li>{{ tarea.nombre_mayuscula }}</li>
             <li>{{ tarea.completada}}</li>
             <li>{{ tarea.etiqueta.nombre}}</li>
+
+            <!-- Permisos de usuario-->
+            {% if perms.todolist.change_tarea %}
             <a href="{% url 'editar_tarea' tarea.id %}">Editar tarea</a>
             <a href="{% url 'borrar_tarea' tarea.id %}">Borrar tarea</a>
+            {% endif %}
             <hr>
         {% endfor %}
     </div>
