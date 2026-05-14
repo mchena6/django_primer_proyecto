@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "saludo",
-    "todolist"
+    "todolist",
+    "usuarios",
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # Buscar templates en archivos raiz primero
-        "DIRS": [BASE_DIR / 'templates'],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -70,8 +71,8 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = 'saludo'
-LOGOUT_REDIRECT_URL = 'saludo'
+LOGIN_REDIRECT_URL = "saludo"
+LOGOUT_REDIRECT_URL = "saludo"
 
 WSGI_APPLICATION = "primer_proyecto.wsgi.application"
 
@@ -104,6 +105,8 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+AUTH_USER_MODEL = "usuarios.UsuarioPersonalizado"
 
 
 # Internationalization
